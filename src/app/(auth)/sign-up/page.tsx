@@ -11,7 +11,12 @@ import {
 } from "@/lib/constants";
 import {CountrySelectField} from "@/components/forms/CountrySelectField";
 import FooterLink from "@/components/forms/FooterLink";
+import { signUpWithEmail } from "@/lib/actions/authactions";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+
 const SignUp = () => {
+  const router=useRouter()
   const {
     register,
     handleSubmit,
@@ -33,9 +38,15 @@ const SignUp = () => {
     data: SignUpFormData
   ) => {
     try {
-      console.log(data);
+      console.log(data)
+      const result=await signUpWithEmail(data)
+      console.log(result)
+      if((result).success){
+        router.push("/")
+      }
     } catch (error) {
       console.error(error);
+      toast.error("Something went wrong");
     }
   };
 
@@ -59,8 +70,10 @@ const SignUp = () => {
           error={errors.email}
           validation={{
             required: "Invalid Email",
-            pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/,
-            messege: "invalid email",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "invalid email",
+            },
           }}
         />
         <InputField

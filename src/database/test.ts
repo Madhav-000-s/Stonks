@@ -1,20 +1,20 @@
 // database/test.ts
 import 'dotenv/config';  // ✅ Automatically loads .env files
 import mongoose from "mongoose";
-import { connectDB } from "../mongoose";
+import { connectToDatabase } from "./mongoose";
 
 (async () => {
     // Debug
     console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI);
     
     try {
-        if (!process.env.MONGODB_URI) {
+        if (!process.env.MONGODB_URI) { 
             console.error("❌ MONGODB_URI is not set");
             process.exit(1);
         }
 
         console.log("🔄 Attempting to connect to MongoDB...");
-        await connectDB();
+        await connectToDatabase();
         console.log("✅ MongoDB connection successful");
     } catch (error) {
         console.error("❌ MongoDB connection failed:", error);
