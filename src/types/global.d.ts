@@ -59,6 +59,10 @@ declare global {
         renderAs?: 'button' | 'text';
         label?: string;
         initialStocks: StockWithWatchlistStatus[];
+        open?: boolean;
+        onOpenChange?: (open: boolean) => void;
+        forceOpenOnMount?: boolean;
+        hideTrigger?: boolean;
     };
 
     type WelcomeEmailData = {
@@ -168,14 +172,7 @@ declare global {
         news?: MarketNewsArticle[];
     };
 
-    type SearchCommandProps = {
-        open?: boolean;
-        setOpen?: (open: boolean) => void;
-        renderAs?: 'button' | 'text';
-        buttonLabel?: string;
-        buttonVariant?: 'primary' | 'secondary';
-        className?: string;
-    };
+    // (removed duplicate SearchCommandProps; unified above)
 
     type AlertData = {
         symbol: string;

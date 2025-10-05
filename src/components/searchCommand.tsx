@@ -8,8 +8,14 @@ import Link from "next/link";
 import {searchStocks} from "@/lib/actions/finnhub.actions";
 import { useDebounce } from "@/hooks/useDebounce";
 
-export default function SearchCommand({ renderAs = 'button', label = 'Add stock', initialStocks }: SearchCommandProps) {
-  const [open, setOpen] = useState(false)
+export default function SearchCommand({ renderAs = 'button', label = 'Add stock', initialStocks, open: controlledOpen, onOpenChange, forceOpenOnMount, hideTrigger }: SearchCommandProps) {
+  const isControlled = typeof controlledOpen === 'boolean'
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(false)
+  const open = isControlled ? controlledOpen! : uncontrolledOpen
+  const setOpen = (next: boolean) => {
+    if (!isControlled) setUncontrolledOpen(next)
+    onOpenChange?.(next)
+  }
   const [searchTerm, setSearchTerm] = useState("")
   const [loading, setLoading] = useState(false)
   const [stocks, setStocks] = useState<StockWithWatchlistStatus[]>(initialStocks);
@@ -21,12 +27,16 @@ export default function SearchCommand({ renderAs = 'button', label = 'Add stock'
     const onKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault()
-        setOpen(v => !v)
+        setOpen(!open)
       }
     }
     window.addEventListener("keydown", onKeyDown)
     return () => window.removeEventListener("keydown", onKeyDown)
   }, [])
+
+  useEffect(() => {
+    if (forceOpenOnMount) setOpen(true)
+  }, [forceOpenOnMount])
 
   const handleSearch = async () => {
     if(!isSearchMode) return setStocks(initialStocks);
@@ -56,14 +66,16 @@ export default function SearchCommand({ renderAs = 'button', label = 'Add stock'
 
   return (
     <>
-      {renderAs === 'text' ? (
-          <span onClick={() => setOpen(true)} className="search-text">
-            {label}
-          </span>
-      ): (
-          <Button onClick={() => setOpen(true)} className="search-btn">
-            {label}
-          </Button>
+      {!hideTrigger && (
+        renderAs === 'text' ? (
+            <span onClick={() => setOpen(true)} className="search-text">
+              {label}
+            </span>
+        ): (
+            <Button onClick={() => setOpen(true)} className="search-btn">
+              {label}
+            </Button>
+        )
       )}
       <CommandDialog open={open} onOpenChange={setOpen} className="search-dialog">
         <div className="search-field">
