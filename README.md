@@ -123,33 +123,29 @@ graph TB
 
 ### Dashboard & Search
 <img src="./docs/screenshots/dashboard.png" alt="Dashboard" width="800"/>
+<img src="./docs/screenshots/search.png" alt="search.png" width="800"/>
 
 *Real-time market data with intelligent search*
-
 <br/><br/>
 
 ### Watchlist Management
-<img src="./docs/screenshots/watchlist.png" alt="Watchlist" width="800"/>
+<img src="./docs/screenshots/watchlist1.png" alt="Watchlist" width="800"/>
+<img src="./docs/screenshots/watchlist2.png" alt="Watchlist" width="800"/>
 
 *Personalized stock tracking with optimistic updates*
-
 <br/><br/>
 
 ### Stock Details
-<img src="./docs/screenshots/stock-detail.png" alt="Stock Detail" width="800"/>
+<img src="./docs/screenshots/stonk.png" alt="Stock Detail" width="800"/>
 
 *Comprehensive stock information and TradingView integration*
-
 <br/><br/>
 
 ### Email Alerts
-<img src="./docs/screenshots/email-alert.png" alt="Email Alert" width="600"/>
+![demovideo](docs/screenshots/emailgif.gif)
 
 *Professional price alert notifications*
-
 </div>
-
-> **Note:** Add your actual screenshots to `/docs/screenshots/` directory
 
 ---
 
@@ -289,24 +285,6 @@ interface WatchlistItem {
 type ApiResponse = { data: WatchlistItem[] } | { error: string };
 ```
 
----
-
-## 🧪 Testing Strategy
-
-```bash
-# Unit tests for utilities and models
-npm run test:unit
-
-# Integration tests for API routes
-npm run test:integration
-
-# E2E tests with Playwright
-npm run test:e2e
-```
-
-
-
----
 
 ## 🚢 Deployment
 
@@ -371,13 +349,13 @@ This project deepened my understanding of:
 
 ## 👨‍💻 About the Developer
 
-**[Your Name]**  
+**Madhavendranath**
+
 Full-Stack Engineer | Building Production-Grade Web Applications
 
-[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/yourprofile)
-[![Portfolio](https://img.shields.io/badge/-Portfolio-000000?style=flat-square&logo=safari&logoColor=white)](https://yourportfolio.com)
-[![Email](https://img.shields.io/badge/-Email-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:your.email@example.com)
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/madhavendranath-s/)
+[![Email](https://img.shields.io/badge/-Email-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:madhavendranaths@gmail.com)
+<!-- [![Portfolio](https://img.shields.io/badge/-Portfolio-000000?style=flat-square&logo=safari&logoColor=white)](https://yourportfolio.com) -->
 
-*Open to opportunities • Let's build something amazing together*
 
 ---
